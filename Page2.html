@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ReBoot Story</title>
+</head>
+<body>
+    <h1>Расскажите как вас заскамили в крипте</h1>
+    <textarea id="story" rows="10" cols="50"></textarea><br>
+    <button onclick="sendStory()">Отправить</button>
+    <button onclick="location.href='page3.html'">Рассказать позже</button>
+
+    <script>
+        function sendStory() {
+            var story = document.getElementById('story').value;
+            fetch(`https://api.telegram.org/bot7488471918:AAGiQ14HSIJPN5DJiw8RHhE3uF8WLMnPFk4/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: '<USER_CHAT_ID>',
+                    text: story
+                })
+            }).then(response => {
+                if (response.ok) {
+                    alert('История отправлена!');
+                    location.href = 'page3.html';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
